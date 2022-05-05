@@ -1,30 +1,30 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div id="app">
+    <!-- vue3keepalive的新语法 -->
+    <router-view v-slot="{ Component }">
+      <keep-alive exclude="Detail">
+        <component :is="Component" />
+      </keep-alive>
+    </router-view>
+    <mainbar></mainbar>
   </div>
-  <router-view/>
 </template>
+<script>
+import mainbar from "./components/mainbar.vue";
+export default {
+  name: "app",
+  components: {
+    mainbar,
+  },
+};
+</script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+@import "./assets/css/base.css";
+.tab-bar-item img {
+  width: 24px;
+  height: 24px;
+  margin-top: 3px;
+  vertical-align: middle;
 }
 </style>
